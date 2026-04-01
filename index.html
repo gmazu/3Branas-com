@@ -1,359 +1,197 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3Branas — Universo en Construcción</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<title>3-Branas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --gold: #c9a84c;
-    --dim-gold: #7a6130;
-    --white: #f0ede6;
-    --dark: #050505;
-    --mid: #111;
+    --bg: #08090c;
+    --panel: rgba(255, 247, 230, 0.04);
+    --line: rgba(196, 157, 81, 0.32);
+    --gold: #d4a94b;
+    --gold-soft: #8a6d34;
+    --text: #f5f0e4;
+    --muted: #c6baa0;
   }
+
+  * { box-sizing: border-box; margin: 0; }
 
   html, body {
-    height: 100%;
-    background: var(--dark);
-    color: var(--white);
-    font-family: 'Cormorant Garamond', serif;
-    overflow-x: hidden;
-  }
-
-  /* Star field */
-  .stars {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
+    min-height: 100%;
     background:
-      radial-gradient(ellipse at 20% 30%, rgba(201,168,76,0.04) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 70%, rgba(201,168,76,0.03) 0%, transparent 60%),
-      var(--dark);
-  }
-  .stars::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 10% 15%, rgba(240,237,230,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 40%, rgba(240,237,230,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 40% 10%, rgba(240,237,230,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 55% 60%, rgba(240,237,230,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 70% 25%, rgba(240,237,230,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 85% 45%, rgba(240,237,230,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 15% 75%, rgba(240,237,230,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 80%, rgba(240,237,230,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 35% 85%, rgba(240,237,230,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 60% 90%, rgba(240,237,230,0.5) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 45% 35%, rgba(201,168,76,0.4) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 75% 55%, rgba(201,168,76,0.3) 0%, transparent 100%);
+      radial-gradient(circle at 20% 20%, rgba(212, 169, 75, 0.12), transparent 30%),
+      radial-gradient(circle at 80% 70%, rgba(212, 169, 75, 0.08), transparent 28%),
+      linear-gradient(180deg, #090a0e 0%, #06070a 100%);
+    color: var(--text);
   }
 
-  /* Layout */
-  .container {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  body {
+    font-family: "Space Grotesk", sans-serif;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+
+  .shell {
+    width: min(1040px, 100%);
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    backdrop-filter: blur(10px);
+    padding: clamp(28px, 4vw, 52px);
+    box-shadow: 0 22px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .eyebrow,
+  .meta,
+  .card-meta {
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    color: var(--gold-soft);
+    font-size: 0.74rem;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px;
     align-items: center;
-    justify-content: center;
-    padding: 3rem 2rem;
-    gap: 2rem;
   }
 
-  /* Header */
   .brand {
-    text-align: center;
-    animation: fadeDown 1.2s ease both;
-  }
-
-  .brand-name {
-    font-family: 'Courier Prime', monospace;
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    font-weight: 700;
-    letter-spacing: 0.25em;
+    font-family: "Bodoni Moda", serif;
+    font-size: clamp(2.8rem, 10vw, 6rem);
+    line-height: 0.92;
+    letter-spacing: 0.04em;
     color: var(--gold);
-    text-transform: uppercase;
+    margin: 12px 0 18px;
   }
 
-  .brand-sub {
-    font-size: clamp(0.75rem, 2vw, 0.95rem);
-    letter-spacing: 0.4em;
-    color: var(--dim-gold);
-    text-transform: uppercase;
-    margin-top: 0.4rem;
+  .lead {
+    max-width: 38rem;
+    font-size: clamp(1rem, 2.2vw, 1.18rem);
+    line-height: 1.7;
+    color: var(--muted);
   }
 
-  /* Equation */
-  .equation {
-    font-family: 'Courier Prime', monospace;
-    font-size: clamp(1.1rem, 3vw, 1.6rem);
-    color: var(--gold);
-    opacity: 0.7;
-    letter-spacing: 0.1em;
-    animation: fadeDown 1.4s ease both;
-    text-align: center;
+  .visual {
+    justify-self: center;
+    width: min(360px, 78vw);
+    aspect-ratio: 1;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(212,169,75,0.18), transparent 52%),
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 68%);
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    overflow: hidden;
   }
 
-  /* YinYang placeholder */
-  .yinyang-container {
-    width: clamp(180px, 35vw, 320px);
-    height: clamp(180px, 35vw, 320px);
-    position: relative;
-    animation: fadeIn 2s ease both, slowRotate 60s linear infinite;
-    filter: drop-shadow(0 0 30px rgba(201,168,76,0.15));
-  }
-
-  .yinyang-container svg {
+  .visual img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 28px rgba(212, 169, 75, 0.24));
   }
 
-  /* Title block */
-  .title-block {
-    text-align: center;
-    animation: fadeUp 1.6s ease both;
+  .cards {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
   }
 
-  .title-main {
-    font-size: clamp(1.6rem, 5vw, 3rem);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: 0.05em;
-    color: var(--white);
-    line-height: 1.2;
-  }
-
-  .title-accent {
+  .card {
     display: block;
-    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
-    font-family: 'Courier Prime', monospace;
-    letter-spacing: 0.5em;
-    color: var(--dim-gold);
-    text-transform: uppercase;
-    margin-top: 0.8rem;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 22px;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
   }
 
-  /* Counter */
-  .counter-block {
-    text-align: center;
-    animation: fadeUp 1.8s ease both;
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(212, 169, 75, 0.7);
+    background: rgba(255, 247, 230, 0.07);
   }
 
-  .counter-label {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    color: var(--dim-gold);
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
+  .card-title {
+    font-family: "Bodoni Moda", serif;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    color: var(--text);
+    margin: 10px 0 10px;
   }
 
-  .counter-display {
-    font-family: 'Courier Prime', monospace;
-    font-size: clamp(0.85rem, 2.5vw, 1.2rem);
-    color: var(--gold);
-    letter-spacing: 0.15em;
+  .card p {
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 32rem;
   }
 
-  /* Divider */
-  .divider {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, transparent, var(--dim-gold), transparent);
-    animation: fadeIn 2s ease both;
-  }
-
-  /* Contact */
-  .contact-block {
-    text-align: center;
-    animation: fadeUp 2s ease both;
-    width: 100%;
-    max-width: 420px;
-  }
-
-  .contact-label {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    color: var(--dim-gold);
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-  }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(201,168,76,0.2);
-    color: var(--white);
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.85rem;
-    padding: 0.8rem 1rem;
-    outline: none;
-    transition: border-color 0.3s;
-    resize: none;
-    letter-spacing: 0.05em;
-  }
-
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    border-color: rgba(201,168,76,0.6);
-  }
-
-  .contact-form input::placeholder,
-  .contact-form textarea::placeholder {
-    color: rgba(201,168,76,0.3);
-    font-style: italic;
-  }
-
-  .contact-form button {
-    background: transparent;
-    border: 1px solid var(--dim-gold);
-    color: var(--gold);
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    padding: 0.9rem 2rem;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .contact-form button:hover {
-    background: rgba(201,168,76,0.08);
-    border-color: var(--gold);
-  }
-
-  .form-note {
-    font-size: 0.7rem;
-    color: var(--dim-gold);
-    letter-spacing: 0.15em;
-    margin-top: 0.8rem;
-    font-style: italic;
-  }
-
-  /* Footer */
   .footer {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    color: rgba(201,168,76,0.3);
-    text-transform: uppercase;
-    text-align: center;
-    animation: fadeIn 2.5s ease both;
-    margin-top: 1rem;
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(196, 157, 81, 0.18);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 
-  /* Animations */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @media (max-width: 820px) {
+    .hero,
+    .cards {
+      grid-template-columns: 1fr;
+    }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    .visual {
+      max-width: 280px;
+    }
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes slowRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-  }
-
-  .equation { animation: fadeDown 1.4s ease both, pulse 4s ease-in-out infinite; }
 </style>
 </head>
 <body>
+  <main class="shell">
+    <div class="hero">
+      <section>
+        <div class="eyebrow">Threshold / Umbral</div>
+        <h1 class="brand">3-Branas</h1>
+        <p class="lead">
+          A bilingual gateway into the 3-Branas field. Enter through English or Spanish.
+          Both membranes will evolve independently, but they begin here, under the same sky.
+        </p>
+      </section>
 
-<div class="stars"></div>
+      <div class="visual">
+        <img src="preview.webp" alt="3-Branas field image">
+      </div>
+    </div>
 
-<div class="container">
+    <section class="cards" aria-label="Language selection">
+      <a class="card" href="en/">
+        <div class="card-meta">English membrane</div>
+        <h2 class="card-title">Enter in English</h2>
+        <p>A concise English landing page for the public-facing .com layer.</p>
+      </a>
 
-  <div class="brand">
-    <div class="brand-name">3Branas</div>
-    <div class="brand-sub">ThöEv — RθB — eCEL</div>
-  </div>
+      <a class="card" href="es/">
+        <div class="card-meta">Membrana en espanol</div>
+        <h2 class="card-title">Entrar en espanol</h2>
+        <p>Una portada en espanol con tono y lectura propios, separada de la version inglesa.</p>
+      </a>
+    </section>
 
-  <div class="equation">E = 4/3 · πr²γ</div>
-
-  <div class="yinyang-container">
-    <img src="preview.webp" alt="3Branas Logo" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 25px rgba(201,168,76,0.2)) brightness(1.1);"/>
-  </div>
-
-  <div class="title-block">
-    <h1 class="title-main">Universo en Construcción</h1>
-    <span class="title-accent">Universe Under Construction</span>
-  </div>
-
-  <div class="counter-block">
-    <div class="counter-label">Tiempo transcurrido desde el origen</div>
-    <div class="counter-display" id="counter">calculando...</div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="contact-block">
-    <div class="contact-label">Contacto</div>
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <input type="text" placeholder="nombre" required/>
-      <input type="email" placeholder="correo electrónico" required/>
-      <textarea rows="4" placeholder="mensaje"></textarea>
-      <button type="submit">Enviar</button>
-      <div class="form-note" id="form-note"></div>
-    </form>
-  </div>
-
-  <div class="footer">
-    Santiago, Chile · MMXXVI · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e18c809b8580938a8c8095958493a1868c80888dcf828e8c">[email&#160;protected]</a>
-  </div>
-
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Counter: 13.8 billion years in seconds
-  const AGE_OF_UNIVERSE_SECONDS = 13.8e9 * 365.25 * 24 * 3600;
-  const START = Date.now();
-
-  function formatCounter(seconds) {
-    const yrs = Math.floor(seconds / (365.25 * 24 * 3600));
-    const remainder = seconds % (365.25 * 24 * 3600);
-    const days = Math.floor(remainder / (24 * 3600));
-    const hrs = Math.floor((remainder % (24 * 3600)) / 3600);
-    const mins = Math.floor((remainder % 3600) / 60);
-    const secs = Math.floor(remainder % 60);
-
-    const fmt = n => String(n).padStart(2, '0');
-    const fmtY = n => n.toLocaleString('es-CL');
-
-    return `${fmtY(yrs)} años · ${fmt(days)}d · ${fmt(hrs)}h · ${fmt(mins)}m · ${fmt(secs)}s`;
-  }
-
-  function updateCounter() {
-    const elapsed = (Date.now() - START) / 1000;
-    const total = AGE_OF_UNIVERSE_SECONDS + elapsed;
-    document.getElementById('counter').textContent = formatCounter(total);
-  }
-
-  updateCounter();
-  set
+    <footer class="footer">
+      <div class="meta">Santiago, Chile</div>
+      <div class="meta">2026</div>
+    </footer>
+  </main>
+</body>
+</html>
