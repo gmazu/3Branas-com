@@ -43,3 +43,7 @@ Para probar cambios antes de publicarlos:
 Luego abre:
 
 - `http://localhost:8000`
+
+## Notas
+
+- El contador no debe quedar fijo: debe mantenerse activo y contar en vivo en las paginas que lo usen.
