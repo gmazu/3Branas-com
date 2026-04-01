@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3Branas — Universo en Construcción</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #c9a84c;
+    --dim-gold: #7a6130;
+    --white: #f0ede6;
+    --dark: #050505;
+    --mid: #111;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* Star field */
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(201,168,76,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(201,168,76,0.03) 0%, transparent 60%),
+      var(--dark);
+  }
+  .stars::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(240,237,230,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(240,237,230,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 10%, rgba(240,237,230,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 60%, rgba(240,237,230,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 25%, rgba(240,237,230,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 45%, rgba(240,237,230,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 75%, rgba(240,237,230,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(240,237,230,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 85%, rgba(240,237,230,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 90%, rgba(240,237,230,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 45% 35%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 75% 55%, rgba(201,168,76,0.3) 0%, transparent 100%);
+  }
+
+  /* Layout */
+  .container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    gap: 2rem;
+  }
+
+  /* Header */
+  .brand {
+    text-align: center;
+    animation: fadeDown 1.2s ease both;
+  }
+
+  .brand-name {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .brand-sub {
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    letter-spacing: 0.4em;
+    color: var(--dim-gold);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* Equation */
+  .equation {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--gold);
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+    animation: fadeDown 1.4s ease both;
+    text-align: center;
+  }
+
+  /* YinYang placeholder */
+  .yinyang-container {
+    width: clamp(180px, 35vw, 320px);
+    height: clamp(180px, 35vw, 320px);
+    position: relative;
+    animation: fadeIn 2s ease both, slowRotate 60s linear infinite;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.15));
+  }
+
+  .yinyang-container svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Title block */
+  .title-block {
+    text-align: center;
+    animation: fadeUp 1.6s ease both;
+  }
+
+  .title-main {
+    font-size: clamp(1.6rem, 5vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .title-accent {
+    display: block;
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    font-family: 'Courier Prime', monospace;
+    letter-spacing: 0.5em;
+    color: var(--dim-gold);
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+  }
+
+  /* Counter */
+  .counter-block {
+    text-align: center;
+    animation: fadeUp 1.8s ease both;
+  }
+
+  .counter-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--dim-gold);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .counter-display {
+    font-family: 'Courier Prime', monospace;
+    font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+
+  /* Divider */
+  .divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--dim-gold), transparent);
+    animation: fadeIn 2s ease both;
+  }
+
+  /* Contact */
+  .contact-block {
+    text-align: center;
+    animation: fadeUp 2s ease both;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .contact-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--dim-gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--white);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: rgba(201,168,76,0.6);
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: rgba(201,168,76,0.3);
+    font-style: italic;
+  }
+
+  .contact-form button {
+    background: transparent;
+    border: 1px solid var(--dim-gold);
+    color: var(--gold);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .contact-form button:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--gold);
+  }
+
+  .form-note {
+    font-size: 0.7rem;
+    color: var(--dim-gold);
+    letter-spacing: 0.15em;
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+
+  /* Footer */
+  .footer {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: rgba(201,168,76,0.3);
+    text-transform: uppercase;
+    text-align: center;
+    animation: fadeIn 2.5s ease both;
+    margin-top: 1rem;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  .equation { animation: fadeDown 1.4s ease both, pulse 4s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+  <div class="brand">
+    <div class="brand-name">3Branas</div>
+    <div class="brand-sub">ThöEv — RθB — eCEL</div>
+  </div>
+
+  <div class="equation">E = 4/3 · πr²γ</div>
+
+  <div class="yinyang-container">
+    <img src="preview.webp" alt="3Branas Logo" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 25px rgba(201,168,76,0.2)) brightness(1.1);"/>
+  </div>
+
+  <div class="title-block">
+    <h1 class="title-main">Universo en Construcción</h1>
+    <span class="title-accent">Universe Under Construction</span>
+  </div>
+
+  <div class="counter-block">
+    <div class="counter-label">Tiempo transcurrido desde el origen</div>
+    <div class="counter-display" id="counter">calculando...</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="contact-block">
+    <div class="contact-label">Contacto</div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="nombre" required/>
+      <input type="email" placeholder="correo electrónico" required/>
+      <textarea rows="4" placeholder="mensaje"></textarea>
+      <button type="submit">Enviar</button>
+      <div class="form-note" id="form-note"></div>
+    </form>
+  </div>
+
+  <div class="footer">
+    Santiago, Chile · MMXXVI · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e18c809b8580938a8c8095958493a1868c80888dcf828e8c">[email&#160;protected]</a>
+  </div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Counter: 13.8 billion years in seconds
+  const AGE_OF_UNIVERSE_SECONDS = 13.8e9 * 365.25 * 24 * 3600;
+  const START = Date.now();
+
+  function formatCounter(seconds) {
+    const yrs = Math.floor(seconds / (365.25 * 24 * 3600));
+    const remainder = seconds % (365.25 * 24 * 3600);
+    const days = Math.floor(remainder / (24 * 3600));
+    const hrs = Math.floor((remainder % (24 * 3600)) / 3600);
+    const mins = Math.floor((remainder % 3600) / 60);
+    const secs = Math.floor(remainder % 60);
+
+    const fmt = n => String(n).padStart(2, '0');
+    const fmtY = n => n.toLocaleString('es-CL');
+
+    return `${fmtY(yrs)} años · ${fmt(days)}d · ${fmt(hrs)}h · ${fmt(mins)}m · ${fmt(secs)}s`;
+  }
+
+  function updateCounter() {
+    const elapsed = (Date.now() - START) / 1000;
+    const total = AGE_OF_UNIVERSE_SECONDS + elapsed;
+    document.getElementById('counter').textContent = formatCounter(total);
+  }
+
+  updateCounter();
+  set
