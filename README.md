@@ -33,3 +33,13 @@ Una vez propagado el DNS, GitHub Pages podra servir el sitio con HTTPS.
 ## Desarrollo
 
 No hay proceso de build. El sitio usa archivos estaticos y puede abrirse localmente en navegador cargando `index.html`.
+
+Para probar cambios antes de publicarlos:
+
+```bash
+./preview_local.sh
+```
+
+Luego abre:
+
+- `http://localhost:8000`
