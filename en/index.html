@@ -260,8 +260,8 @@
       margin-top: 4px;
       padding: 28px 28px 88px;
       background:
-        radial-gradient(circle at 20% 50%, rgba(141,213,255,0.18), transparent 28%),
-        radial-gradient(circle at 78% 52%, rgba(255,106,136,0.18), transparent 26%),
+        radial-gradient(circle at 50% 42%, rgba(141,213,255,0.14), transparent 24%),
+        radial-gradient(circle at 50% 58%, rgba(255,106,136,0.12), transparent 22%),
         linear-gradient(180deg, rgba(6,7,10,0.4), rgba(6,7,10,0.9));
     }
 
@@ -270,48 +270,48 @@
       content: "";
       position: absolute;
       top: 50%;
-      width: 44%;
-      height: 58%;
+      width: 52%;
+      height: 60%;
       border-radius: 50%;
-      filter: blur(34px);
-      opacity: 0.62;
+      filter: blur(32px);
       pointer-events: none;
       z-index: 0;
-      animation-duration: 14s;
+      opacity: 0;
+      animation-duration: 22s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       animation-direction: normal;
     }
 
     .hero-visual::before {
-      left: 10%;
+      left: 0;
       background:
-        radial-gradient(circle at 68% 50%, rgba(105, 199, 255, 0.72) 0%, rgba(105, 199, 255, 0.32) 34%, rgba(105, 199, 255, 0.08) 58%, transparent 76%);
-      animation-name: slowCollisionLeft;
+        radial-gradient(circle at 72% 50%, rgba(105, 199, 255, 0.78) 0%, rgba(105, 199, 255, 0.32) 34%, rgba(105, 199, 255, 0.08) 58%, transparent 78%);
+      animation-name: braneFromLeft;
     }
 
     .hero-visual::after {
-      right: 10%;
+      right: 0;
       background:
-        radial-gradient(circle at 32% 50%, rgba(255, 96, 118, 0.68) 0%, rgba(255, 96, 118, 0.3) 34%, rgba(255, 96, 118, 0.08) 58%, transparent 76%);
-      animation-name: slowCollisionRight;
+        radial-gradient(circle at 28% 50%, rgba(255, 96, 118, 0.74) 0%, rgba(255, 96, 118, 0.3) 34%, rgba(255, 96, 118, 0.08) 58%, transparent 78%);
+      animation-name: braneFromRight;
     }
 
     .hero-visual-interference {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 28%;
-      height: 44%;
+      width: 26%;
+      height: 40%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
       background:
-        radial-gradient(circle at center, rgba(255,255,255,0.22) 0%, rgba(186, 218, 255, 0.14) 24%, rgba(255, 140, 152, 0.12) 42%, transparent 72%);
+        radial-gradient(circle at center, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.12) 28%, rgba(186, 218, 255, 0.08) 48%, transparent 74%);
       filter: blur(18px);
-      opacity: 0.16;
+      opacity: 0;
       z-index: 0;
       pointer-events: none;
-      animation: interferencePulse 14s linear infinite;
+      animation: centerCollision 22s linear infinite;
     }
 
     .hero-visual img {
@@ -345,88 +345,68 @@
       z-index: 2;
     }
 
-    @keyframes slowCollisionLeft {
-      0%, 10% {
-        transform: translateY(-50%) translateX(-24%) scale(0.82);
+    @keyframes braneFromLeft {
+      0%, 4% {
+        transform: translate(-108%, -50%) scale(0.72);
         opacity: 0;
       }
-      18% {
-        transform: translateY(-50%) translateX(0) scale(0.94);
-        opacity: 0.32;
+      10% {
+        transform: translate(-88%, -50%) scale(0.82);
+        opacity: 0.42;
       }
-      42% {
-        transform: translateY(-50%) translateX(68%) scale(1.04);
+      46% {
+        transform: translate(74%, -50%) scale(1.05);
         opacity: 0.72;
       }
-      48% {
-        transform: translateY(-50%) translateX(63%) scale(0.98, 1.08);
-        opacity: 0.78;
-      }
       54% {
-        transform: translateY(-50%) translateX(68%) scale(1.02);
-        opacity: 0.66;
+        transform: translate(0%, -50%) scale(0.88);
+        opacity: 0.34;
       }
-      78% {
-        transform: translateY(-50%) translateX(0) scale(0.94);
-        opacity: 0.32;
-      }
-      88%, 100% {
-        transform: translateY(-50%) translateX(-24%) scale(0.82);
+      78%, 100% {
+        transform: translate(-108%, -50%) scale(0.72);
         opacity: 0;
       }
     }
 
-    @keyframes slowCollisionRight {
-      0%, 10% {
-        transform: translateY(-50%) translateX(24%) scale(0.82);
+    @keyframes braneFromRight {
+      0%, 4% {
+        transform: translate(108%, -50%) scale(0.72);
         opacity: 0;
       }
-      18% {
-        transform: translateY(-50%) translateX(0) scale(0.94);
-        opacity: 0.32;
+      10% {
+        transform: translate(88%, -50%) scale(0.82);
+        opacity: 0.42;
       }
-      42% {
-        transform: translateY(-50%) translateX(-68%) scale(1.04);
+      46% {
+        transform: translate(-74%, -50%) scale(1.05);
         opacity: 0.72;
       }
-      48% {
-        transform: translateY(-50%) translateX(-63%) scale(0.98, 1.08);
-        opacity: 0.78;
-      }
       54% {
-        transform: translateY(-50%) translateX(-68%) scale(1.02);
-        opacity: 0.66;
+        transform: translate(0%, -50%) scale(0.88);
+        opacity: 0.34;
       }
-      78% {
-        transform: translateY(-50%) translateX(0) scale(0.94);
-        opacity: 0.32;
-      }
-      88%, 100% {
-        transform: translateY(-50%) translateX(24%) scale(0.82);
+      78%, 100% {
+        transform: translate(108%, -50%) scale(0.72);
         opacity: 0;
       }
     }
 
-    @keyframes interferencePulse {
-      0%, 22% {
+    @keyframes centerCollision {
+      0%, 32% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.78);
+        transform: translate(-50%, -50%) scale(0.76);
       }
-      40% {
+      46% {
+        opacity: 0.34;
+        transform: translate(-50%, -50%) scale(1.14, 0.92);
+      }
+      54% {
         opacity: 0.12;
         transform: translate(-50%, -50%) scale(0.94);
       }
-      48% {
-        opacity: 0.34;
-        transform: translate(-50%, -50%) scale(1.14, 0.9);
-      }
-      54% {
-        opacity: 0.2;
-        transform: translate(-50%, -50%) scale(1);
-      }
-      72%, 100% {
+      100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.78);
+        transform: translate(-50%, -50%) scale(0.76);
       }
     }
 
