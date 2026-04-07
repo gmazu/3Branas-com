@@ -329,7 +329,7 @@
       object-position: center center;
       opacity: 0.8;
       mix-blend-mode: screen;
-      transform: none;
+      transform: translateY(10px);
       position: relative;
       z-index: 1;
       filter: saturate(0.96) drop-shadow(0 0 18px rgba(255,255,255,0.08));
@@ -1008,8 +1008,8 @@
           leftX = mix(-112, 112, travel);
           rightX = mix(112, -112, travel);
 
-          const fadeIn = smoothstep(0, 0.06, travel);
-          const fadeOut = 1 - smoothstep(0.95, 0.992, travel);
+          const fadeIn = smoothstep(0, 0.09, travel);
+          const fadeOut = 1 - smoothstep(0.9, 1, travel);
           const visibility = Math.min(fadeIn, fadeOut);
 
           leftOpacity = rightOpacity = 0.68 * visibility;

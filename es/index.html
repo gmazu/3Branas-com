@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Universo Relacional de 2 3-Branas en Colisión</title>
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -138,48 +142,10 @@
       background: rgba(210, 174, 88, 0.08);
     }
 
-    .paper-header {
-      margin-bottom: 24px;
-      padding: 34px 34px 28px;
-      border: 1px solid var(--panel-border);
-      border-radius: 28px;
-      background: rgba(246, 241, 229, 0.96);
-      color: #17120a;
-      box-shadow: var(--shadow);
-    }
-
-    .paper-kicker {
-      margin-bottom: 16px;
-      color: rgba(23, 18, 10, 0.72);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.74rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .paper-title {
-      margin: 0;
-      font-size: clamp(2.2rem, 5.2vw, 4.8rem);
-      line-height: 1;
-      font-weight: 500;
-      letter-spacing: -0.045em;
-      text-wrap: balance;
-      max-width: 15ch;
-    }
-
-    .paper-deck {
-      margin: 18px 0 0;
-      max-width: 70ch;
-      color: rgba(23, 18, 10, 0.78);
-      font-size: 1.02rem;
-      line-height: 1.7;
-    }
-
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 24px;
-      align-items: stretch;
+      grid-template-columns: 1fr;
+      gap: 18px;
       margin-bottom: 24px;
     }
 
@@ -195,8 +161,9 @@
     }
 
     .hero-copy {
-      padding: 34px 30px 30px;
+      padding: 42px 34px 34px;
       position: relative;
+      text-align: center;
     }
 
     .hero-copy::before {
@@ -211,7 +178,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 20px;
+      margin: 0 auto 22px;
       color: var(--gold);
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.72rem;
@@ -226,19 +193,40 @@
       background: linear-gradient(90deg, rgba(141,213,255,0), rgba(141,213,255,0.85));
     }
 
+    .hero h1 {
+      margin: 0 auto 18px;
+      font-size: clamp(2.9rem, 7vw, 6.4rem);
+      line-height: 0.92;
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      max-width: 16ch;
+      text-wrap: unset;
+    }
+
+    .hero-title-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-title-line--small {
+      font-size: 0.6em;
+      line-height: 1.05;
+      margin: 0.08em 0;
+    }
+
     .hero p {
-      margin: 0 0 18px;
+      margin: 0 auto 18px;
       color: var(--muted);
       font-size: 1.06rem;
       line-height: 1.75;
-      max-width: 60ch;
+      max-width: 54ch;
     }
 
     .hero-note {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
     .metric {
@@ -265,37 +253,115 @@
     }
 
     .hero-visual {
+      --left-x: -112%;
+      --right-x: 112%;
+      --left-scale-x: 0.74;
+      --right-scale-x: 0.74;
+      --left-scale-y: 0.74;
+      --right-scale-y: 0.74;
+      --left-opacity: 0;
+      --right-opacity: 0;
+      --collision-scale-x: 0.78;
+      --collision-scale-y: 0.78;
+      --collision-opacity: 0;
       display: grid;
-      align-items: stretch;
-      min-height: 100%;
+      place-items: center;
+      min-height: 340px;
       position: relative;
+      margin-top: 4px;
+      padding: 28px 28px 88px;
       background:
-        radial-gradient(circle at 20% 50%, rgba(141,213,255,0.18), transparent 28%),
-        radial-gradient(circle at 78% 52%, rgba(255,106,136,0.18), transparent 26%),
+        radial-gradient(circle at 50% 42%, rgba(141,213,255,0.14), transparent 24%),
+        radial-gradient(circle at 50% 58%, rgba(255,106,136,0.12), transparent 22%),
         linear-gradient(180deg, rgba(6,7,10,0.4), rgba(6,7,10,0.9));
     }
 
+    .brane {
+      position: absolute;
+      top: 50%;
+      width: 56%;
+      height: 60%;
+      border-radius: 50%;
+      filter: blur(32px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brane-left {
+      left: 0;
+      opacity: var(--left-opacity);
+      transform: translate(var(--left-x), -50%) scale(var(--left-scale-x), var(--left-scale-y));
+      background:
+        radial-gradient(circle at 72% 50%, rgba(105, 199, 255, 0.78) 0%, rgba(105, 199, 255, 0.32) 34%, rgba(105, 199, 255, 0.08) 58%, transparent 78%);
+    }
+
+    .brane-right {
+      right: 0;
+      opacity: var(--right-opacity);
+      transform: translate(var(--right-x), -50%) scale(var(--right-scale-x), var(--right-scale-y));
+      background:
+        radial-gradient(circle at 28% 50%, rgba(255, 96, 118, 0.74) 0%, rgba(255, 96, 118, 0.3) 34%, rgba(255, 96, 118, 0.08) 58%, transparent 78%);
+    }
+
+    .hero-visual-interference {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 26%;
+      height: 40%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.12) 28%, rgba(186, 218, 255, 0.08) 48%, transparent 74%);
+      filter: blur(18px);
+      opacity: var(--collision-opacity);
+      z-index: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(var(--collision-scale-x), var(--collision-scale-y));
+    }
+
     .hero-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.96;
+      width: auto;
+      height: auto;
+      max-width: min(100%, 220px);
+      max-height: 180px;
+      object-fit: contain;
+      object-position: center center;
+      opacity: 0.8;
       mix-blend-mode: screen;
+      transform: translateY(10px);
+      position: relative;
+      z-index: 1;
+      filter: saturate(0.96) drop-shadow(0 0 18px rgba(255,255,255,0.08));
+      -webkit-mask-image: radial-gradient(circle at center, #000 0 44%, rgba(0,0,0,0.98) 56%, rgba(0,0,0,0.72) 68%, transparent 84%);
+      mask-image: radial-gradient(circle at center, #000 0 44%, rgba(0,0,0,0.98) 56%, rgba(0,0,0,0.72) 68%, transparent 84%);
     }
 
     .visual-caption {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(6, 7, 10, 0.72);
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(10px);
+      margin-top: 12px;
       color: var(--muted);
       font-size: 0.92rem;
       line-height: 1.55;
+      text-align: center;
+      max-width: 58ch;
+      margin-inline: auto;
+    }
+
+    @media (max-width: 720px) {
+      .hero-visual {
+        min-height: 300px;
+        padding: 22px 22px 82px;
+      }
+
+      .hero-visual img {
+        max-width: min(100%, 180px);
+        max-height: 150px;
+      }
+
+      .brane {
+        width: 62%;
+        height: 54%;
+      }
     }
 
     .grid {
@@ -690,7 +756,6 @@
       }
 
       .hero-copy,
-      .paper-header,
       .panel {
         padding: 22px 18px;
       }
@@ -706,41 +771,31 @@
   <div class="shell">
     <header class="nav">
       <div class="nav-brand">
-        <div class="nav-title">3-Branas</div>
-        <div class="nav-sub">ThöEv · eCEL · Colisión de 2 3-Branas</div>
+        <div class="nav-title">3Branas</div>
+        <div class="nav-sub">eCEL · Collision of 2 3-Branes · Working Draft</div>
       </div>
       <nav class="nav-links">
         <a class="nav-chip" href="../en/" lang="en" aria-label="English version">🇺🇸 EN</a>
       </nav>
     </header>
 
-    <section class="paper-header">
-      <div class="paper-kicker">Preprint interface · Working draft</div>
-      <h1 class="paper-title">Universo Relacional de 2 3-Branas en Colisión</h1>
-      <p class="paper-deck">
-        Una entrada pública en formato de paper para un marco todavía en construcción:
-        una hipótesis geométrica, un sistema de lectura y una interfaz mínima para
-        seguir el desarrollo sin exponer aún el archivo completo.
-      </p>
-    </section>
-
     <section class="hero">
       <article class="hero-copy">
         <div class="eyebrow">Universo en construcción</div>
+        <h1>
+          <span class="hero-title-line">Universo Relacional</span>
+          <span class="hero-title-line hero-title-line--small">de</span>
+          <span class="hero-title-line">2 3-Branas en Colisión.</span>
+        </h1>
         <p>
-          Una nueva interpretación del universo observado, descrita en una serie
-          de papers independientes que todavía están en construcción.
-        </p>
-        <p>
-          Este sitio funciona como puerta de entrada al marco: borradores vivos,
-          documentos de revisión, ramas en desarrollo y piezas que buscan
-          cerrar mecanismo antes que maquillaje.
+          Una nueva interpretación del universo observado, desarrollada a
+          través de una serie de papers independientes todavía en proceso.
         </p>
 
         <div class="hero-note">
           <div class="metric">
             <span class="metric-label">Marco</span>
-            <span class="metric-value">3-Branas + eCEL + GRF</span>
+            <span class="metric-value">3Branas + eCEL + GRF</span>
           </div>
           <div class="metric">
             <span class="metric-label">Rama viva</span>
@@ -748,31 +803,34 @@
           </div>
           <div class="metric">
             <span class="metric-label">Modo</span>
-            <span class="metric-value">Working draft, no cierre final</span>
+            <span class="metric-value">Borrador de trabajo, no versión final</span>
           </div>
         </div>
       </article>
 
       <aside class="hero-visual">
-        <img src="preview.jpeg" alt="Símbolo visual de 3-Branas">
-        <div class="visual-caption">
-          Interfaz simbólica del proyecto. La lectura visual importa: contacto,
-          acoplamiento, tensión y reorganización del medio.
-        </div>
+        <div class="brane brane-left" aria-hidden="true"></div>
+        <div class="brane brane-right" aria-hidden="true"></div>
+        <div class="hero-visual-interference" aria-hidden="true"></div>
+        <img src="../assets/img/preview-640.jpg" alt="Símbolo visual de 3-Branas">
       </aside>
+      <div class="visual-caption">
+        Interfaz simbólica del proyecto. La lectura visual importa:
+        contacto, acoplamiento, tensión y reorganización del medio.
+      </div>
     </section>
 
-    <section class="grid" id="marco">
+    <section class="grid" id="framework">
       <article class="panel span-7">
-        <h2>Qué sostiene hoy la línea</h2>
+        <h2>Qué define hoy el marco</h2>
         <p>
-          El núcleo actual no está puesto en “explicar todo” de una vez, sino en
-          cerrar piezas con mecanismo: geometría de colisión, escalas
-          observacionales, perturbaciones del medio, analogías experimentales y
-          documentos que puedan leerse sin depender de una conversación previa.
+          La prioridad actual no es “explicarlo todo” de una vez, sino cerrar
+          piezas con mecanismo: geometría de colisión, escalas observacionales,
+          perturbaciones del medio, analogías experimentales y documentos que
+          puedan leerse sin depender de una conversación previa.
         </p>
         <div class="list">
-          <div class="list-item">La colisión no se trata como explosión sin mecanismo, sino como interfaz física que barre una geometría.</div>
+          <div class="list-item">La colisión no se trata como una explosión sin mecanismo, sino como una interfaz física que barre una geometría.</div>
           <div class="list-item">eCEL se usa como régimen liberado del medio, con propagación, acoplamiento y respuesta ondulatoria.</div>
           <div class="list-item">La inflación aparente se lee geométricamente, no como materia viajando más rápido que la luz.</div>
           <div class="list-item">La misma arquitectura intenta conectar estructura cosmológica, ondas gravitacionales y ramas más microscópicas del modelo.</div>
@@ -782,12 +840,12 @@
       <aside class="panel span-5">
         <h2>Advertencia simbólica</h2>
         <p>
-          Esta web sigue en construcción. La cuenta regresiva no es física: es
-          un juego visual sobre los 13.800 millones de años que llevamos
-          tratando de entender qué pasó.
+          Esta web sigue en construcción. La cuenta regresiva no es física:
+          es un juego visual construido alrededor de los 13.800 millones de
+          años que llevamos intentando entender qué ocurrió.
         </p>
         <div class="timepanel-wrap">
-          <span class="timepanel-label">Present Time</span>
+          <span class="timepanel-label">Tiempo presente</span>
           <div class="timepanel-grid" id="presentTimePanel">
             <div class="timepanel-cell"><span class="timepanel-unit">mes</span><span class="timepanel-num-wrap"><span class="timepanel-num">--</span></span></div>
             <div class="timepanel-cell"><span class="timepanel-unit">día</span><span class="timepanel-num-wrap"><span class="timepanel-num">--</span></span></div>
@@ -798,49 +856,60 @@
           </div>
         </div>
         <div class="counter-wrap">
-          <span class="counter-label">Countdown Display</span>
+          <span class="counter-label">Cuenta regresiva simbólica</span>
           <div class="counter-grid" id="counter">
             <div class="counter-cell"><span class="counter-unit">años</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
             <div class="counter-cell"><span class="counter-unit">meses</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
             <div class="counter-cell"><span class="counter-unit">días</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
             <div class="counter-cell"><span class="counter-unit">horas</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
-            <div class="counter-cell"><span class="counter-unit">mins</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
-            <div class="counter-cell seconds"><span class="counter-unit">segs</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
-          </div>
-          <div class="counter-meta">Tiempo simbólico restante para cerrar la película</div>
+          <div class="counter-cell"><span class="counter-unit">min</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
+          <div class="counter-cell seconds"><span class="counter-unit">seg</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
+        </div>
+          <div class="counter-meta">Tiempo simbólico restante antes de que el marco cierre en una forma legible</div>
         </div>
         <div class="status-row">
           <span class="status-chip">Santiago, Chile</span>
           <span class="status-chip">MMXXVI</span>
-          <span class="status-chip">Working draft</span>
+          <span class="status-chip">Borrador de trabajo</span>
         </div>
       </aside>
     </section>
 
-    <section class="grid" id="estado">
-      <article class="panel span-12">
-        <h2>Universo en construcción</h2>
+    <section class="grid" id="status">
+      <article class="panel span-6">
+        <h2>Estado actual</h2>
         <p>
-          Esta página no intenta publicar todavía el archivo completo del
-          proyecto. Funciona como umbral: una señal visible de que la línea está
-          viva, todavía en elaboración, y organizada alrededor de una intuición
-          geométrica que sigue buscando forma legible.
-        </p>
-        <p>
-          Por ahora, lo importante no es abrir todos los documentos, sino dar
-          una entrada sobria: una imagen, una idea de colisión, y un reloj
-          simbólico que recuerde la escala del problema.
+          La prioridad sigue siendo cerrar documentos legibles, no inflar el
+          sistema con nuevas ramas. La pregunta ya no es “¿hay una idea?”,
+          sino qué parte está lo bastante cerrada como para leerse sin
+          contexto extra.
         </p>
         <div class="list">
-          <div class="list-item">La web está en construcción y seguirá cambiando.</div>
-          <div class="list-item">El contador es simbólico: acompaña la lectura, no representa una medición física literal.</div>
-          <div class="list-item">Los documentos internos y ramas de trabajo no se publican todavía aquí.</div>
+          <div class="list-item">Colisión de 2 3-Branas ya está en una fase de pulido y lectura externa.</div>
+          <div class="list-item">MazzGAP funciona como una rama técnica separada para estabilidad y energía de enlace.</div>
+          <div class="list-item">La web debe actuar como puerta de entrada, no como sustituto del paper.</div>
+        </div>
+      </article>
+
+      <article class="panel span-6">
+        <h2>Contacto y circulación</h2>
+        <p>
+          Si esta línea va a circular, debería acompañarse de PDFs versionados,
+          una nota contextual breve y materiales de lectura coherentes con el
+          documento principal.
+        </p>
+        <div class="cards" style="grid-template-columns: 1fr;">
+          <a class="card-link" href="mailto:contacto@3branas.com">
+            <span class="card-tag">Contacto</span>
+            <span class="card-title">contacto@3branas.com</span>
+            <span class="card-note">Alias público de contacto para la presentación externa del proyecto.</span>
+          </a>
         </div>
       </article>
     </section>
 
     <footer class="footer">
-      <span>3-Branas · eCEL · GRF2026</span>
+      <span>3Branas · eCEL · GRF2026</span>
       <span>Universo en construcción</span>
     </footer>
   </div>
@@ -893,13 +962,90 @@
         <div class="counter-cell"><span class="counter-unit">meses</span><span class="counter-num-wrap"><span class="counter-num">${String(months).padStart(2, "0")}</span></span></div>
         <div class="counter-cell"><span class="counter-unit">días</span><span class="counter-num-wrap"><span class="counter-num">${String(days).padStart(2, "0")}</span></span></div>
         <div class="counter-cell"><span class="counter-unit">horas</span><span class="counter-num-wrap"><span class="counter-num">${String(hours).padStart(2, "0")}</span></span></div>
-        <div class="counter-cell"><span class="counter-unit">mins</span><span class="counter-num-wrap"><span class="counter-num">${String(minutes).padStart(2, "0")}</span></span></div>
-        <div class="counter-cell seconds"><span class="counter-unit">segs</span><span class="counter-num-wrap"><span class="counter-num">${String(seconds).padStart(2, "0")}</span></span></div>
+        <div class="counter-cell"><span class="counter-unit">min</span><span class="counter-num-wrap"><span class="counter-num">${String(minutes).padStart(2, "0")}</span></span></div>
+        <div class="counter-cell seconds"><span class="counter-unit">seg</span><span class="counter-num-wrap"><span class="counter-num">${String(seconds).padStart(2, "0")}</span></span></div>
       `;
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function mix(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function smoothstep(edge0, edge1, x) {
+      const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+      return t * t * (3 - 2 * t);
+    }
+
+    function setupHeroCollision() {
+      const visual = document.querySelector(".hero-visual");
+      if (!visual) return;
+
+      const cycleMs = 22000;
+      const travelStart = 0.06;
+      const travelEnd = 0.94;
+
+      function frame(now) {
+        const t = (now % cycleMs) / cycleMs;
+        const travel = clamp((t - travelStart) / (travelEnd - travelStart), 0, 1);
+
+        let leftX = -112;
+        let rightX = 112;
+        let leftOpacity = 0;
+        let rightOpacity = 0;
+        let leftScaleX = 0.74;
+        let rightScaleX = 0.74;
+        let leftScaleY = 0.74;
+        let rightScaleY = 0.74;
+        let collisionOpacity = 0;
+        let collisionScaleX = 0.78;
+        let collisionScaleY = 0.78;
+
+        if (t >= travelStart && t <= travelEnd) {
+          leftX = mix(-112, 112, travel);
+          rightX = mix(112, -112, travel);
+
+          const fadeIn = smoothstep(0, 0.09, travel);
+          const fadeOut = 1 - smoothstep(0.9, 1, travel);
+          const visibility = Math.min(fadeIn, fadeOut);
+
+          leftOpacity = rightOpacity = 0.68 * visibility;
+
+          const centerDistance = Math.abs(leftX - rightX);
+          const overlap = clamp(1 - centerDistance / 58, 0, 1);
+
+          leftScaleX = rightScaleX = mix(0.74, 1.03, visibility) + 0.04 * overlap;
+          leftScaleY = rightScaleY = mix(0.74, 1.03, visibility) - 0.06 * overlap;
+
+          collisionOpacity = 0.44 * Math.pow(overlap, 1.35);
+          collisionScaleX = mix(0.82, 1.52, overlap);
+          collisionScaleY = mix(0.82, 0.84, overlap);
+        }
+
+        visual.style.setProperty("--left-x", `${leftX}%`);
+        visual.style.setProperty("--right-x", `${rightX}%`);
+        visual.style.setProperty("--left-opacity", leftOpacity.toFixed(3));
+        visual.style.setProperty("--right-opacity", rightOpacity.toFixed(3));
+        visual.style.setProperty("--left-scale-x", leftScaleX.toFixed(3));
+        visual.style.setProperty("--right-scale-x", rightScaleX.toFixed(3));
+        visual.style.setProperty("--left-scale-y", leftScaleY.toFixed(3));
+        visual.style.setProperty("--right-scale-y", rightScaleY.toFixed(3));
+        visual.style.setProperty("--collision-opacity", collisionOpacity.toFixed(3));
+        visual.style.setProperty("--collision-scale-x", collisionScaleX.toFixed(3));
+        visual.style.setProperty("--collision-scale-y", collisionScaleY.toFixed(3));
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
     }
 
     updateCounter();
     setInterval(updateCounter, 1000);
+    setupHeroCollision();
   </script>
 </body>
 </html>
