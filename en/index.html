@@ -270,7 +270,7 @@
       content: "";
       position: absolute;
       top: 50%;
-      width: 50%;
+      width: 56%;
       height: 60%;
       border-radius: 50%;
       filter: blur(32px);
@@ -285,6 +285,7 @@
 
     .hero-visual::before {
       left: 0;
+      clip-path: inset(0 0 0 0);
       background:
         radial-gradient(circle at 72% 50%, rgba(105, 199, 255, 0.78) 0%, rgba(105, 199, 255, 0.32) 34%, rgba(105, 199, 255, 0.08) 58%, transparent 78%);
       animation-name: braneFromLeft;
@@ -292,6 +293,7 @@
 
     .hero-visual::after {
       right: 0;
+      clip-path: inset(0 0 0 0);
       background:
         radial-gradient(circle at 28% 50%, rgba(255, 96, 118, 0.74) 0%, rgba(255, 96, 118, 0.3) 34%, rgba(255, 96, 118, 0.08) 58%, transparent 78%);
       animation-name: braneFromRight;
@@ -355,11 +357,11 @@
         opacity: 0.42;
       }
       46% {
-        transform: translate(0, -50%) scale(1.02);
+        transform: translate(10%, -50%) scale(1.06);
         opacity: 0.72;
       }
       54% {
-        transform: translate(-18%, -50%) scale(0.9);
+        transform: translate(-12%, -50%) scale(0.92);
         opacity: 0.34;
       }
       78%, 100% {
@@ -378,11 +380,11 @@
         opacity: 0.42;
       }
       46% {
-        transform: translate(0, -50%) scale(1.02);
+        transform: translate(-10%, -50%) scale(1.06);
         opacity: 0.72;
       }
       54% {
-        transform: translate(18%, -50%) scale(0.9);
+        transform: translate(12%, -50%) scale(0.92);
         opacity: 0.34;
       }
       78%, 100% {
@@ -396,13 +398,17 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.76);
       }
-      46% {
+      44% {
         opacity: 0.34;
-        transform: translate(-50%, -50%) scale(1.14, 0.92);
+        transform: translate(-50%, -50%) scale(1.22, 0.94);
       }
-      54% {
-        opacity: 0.12;
-        transform: translate(-50%, -50%) scale(0.94);
+      52% {
+        opacity: 0.26;
+        transform: translate(-50%, -50%) scale(1.08, 0.98);
+      }
+      60% {
+        opacity: 0.1;
+        transform: translate(-50%, -50%) scale(0.92);
       }
       100% {
         opacity: 0;
