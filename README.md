@@ -1,58 +1,67 @@
 # 3Branas
 
-Landing page estatica del proyecto 3Branas.
+Sitio web de entrada para el proyecto `3Branas`.
 
-El sitio esta pensado para publicarse con GitHub Pages y asociarse al dominio `www.3branas.com`.
+No busca funcionar como una pagina corporativa ni como una simple pantalla de “under construction”. La idea es que opere como una membrana publica del marco: una primera lectura visual y conceptual de la linea de trabajo, con tono sobrio, experimental y paper-like.
 
-## Estructura
+## Que muestra hoy
 
-- `index.html`: pagina principal
-- `preview.webp`: imagen de referencia o previsualizacion
+- una portada bilingue:
+  - `en/index.html`
+  - `es/index.html`
+- una composicion principal centrada en la colision de 2 3-branas
+- un panel visual con dinamica de aproximacion, contacto y cruce
+- un contador simbolico
+- una entrada breve al marco `3Branas + eCEL + GRF`
 
-## Publicacion
+## Direccion conceptual
 
-Este repositorio puede desplegarse directamente con GitHub Pages:
+La pagina intenta presentar una intuicion:
 
-1. Ir a `Settings > Pages`
-2. En `Build and deployment`, elegir `Deploy from a branch`
-3. Seleccionar la rama `main`
-4. Guardar
+- dos estructuras o medios que se aproximan
+- una zona de contacto o compresion
+- una reorganizacion visible del medio
+- una lectura cosmologica todavia en construccion
 
-Despues, en la misma configuracion, se puede definir el dominio personalizado:
+La imagen central y la animacion no estan pensadas como decoracion. Deben leerse como figura experimental, analogia visual o interfaz simbolica del problema.
 
-- `www.3branas.com`
+## Tono visual
 
-## DNS
+La estetica buscada en este sitio es:
 
-Para conectar el subdominio `www`, crea un registro `CNAME` en tu proveedor DNS apuntando a:
+- negra
+- sobria
+- holografica sin exceso
+- con sensacion de paper, laboratorio o figura experimental
 
-- `gmazu.github.io`
+La prioridad no es “embellecer” la pagina, sino hacer visible una relacion:
 
-Una vez propagado el DNS, GitHub Pages podra servir el sitio con HTTPS.
+- contacto
+- tension
+- acoplamiento
+- cruce
+- reorganizacion del medio
 
-## Desarrollo
+## Estructura actual
 
-No hay proceso de build. El sitio usa archivos estaticos y puede abrirse localmente en navegador cargando `index.html`.
+- `index.html`: redireccion al acceso principal
+- `en/index.html`: version inglesa
+- `es/index.html`: version en español
+- `assets/img/`: versiones optimizadas de imagen para la web
+- `assets/icons/`: iconos y favicon
 
-Para probar cambios antes de publicarlos:
+## Trabajo pendiente
 
-```bash
-./preview_local.sh
-```
-
-Luego abre:
-
-- `http://localhost:8000`
-
-## Notas
-
-- El contador no debe quedar fijo: debe mantenerse activo y contar en vivo en las paginas que lo usen.
+- seguir afinando la relacion entre texto, figura central y lectura tipo paper
+- decidir si la pagina abrira mas ramas del proyecto o seguira siendo una entrada sobria
+- integrar mas adelante un chat o interfaz conversacional dentro del sitio
+- ordenar mejor la relacion entre web, papers, PDFs y ramas activas
 
 ## Pendientes conceptuales
 
-- Documentar y eventualmente visualizar tres finales cosmologicos dentro de la narrativa del sitio:
-  - `Big Rip`: separacion / cruce / desgarro entre 2 universos o 2 3-branas.
-  - `Big Freeze`: acoplamiento agotado, universos pegados, agotamiento estelar y muerte termica.
-  - `Bounce`: detencion, compresion, colision y retorno o rebote.
-- Evaluar si esos tres finales pueden mostrarse como variantes visuales del panel central de colision.
-- Revisar mas adelante cual de esos finales parece mas plausible con los datos y la linea conceptual disponibles.
+- documentar y eventualmente visualizar tres finales cosmologicos dentro de la narrativa del sitio:
+  - `Big Rip`: separacion / cruce / desgarro entre 2 universos o 2 3-branas
+  - `Big Freeze`: acoplamiento agotado, universos pegados, agotamiento estelar y muerte termica
+  - `Bounce`: detencion, compresion, colision y retorno o rebote
+- evaluar si esos tres finales pueden mostrarse como variantes visuales del panel central de colision
+- revisar mas adelante cual de esos finales parece mas plausible con los datos y la linea conceptual disponibles
