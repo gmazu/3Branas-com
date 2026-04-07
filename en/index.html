@@ -277,10 +277,10 @@
       opacity: 0.62;
       pointer-events: none;
       z-index: 0;
-      animation-duration: 18s;
-      animation-timing-function: ease-in-out;
+      animation-duration: 12s;
+      animation-timing-function: cubic-bezier(0.42, 0, 0.24, 1);
       animation-iteration-count: infinite;
-      animation-direction: alternate;
+      animation-direction: normal;
     }
 
     .hero-visual::before {
@@ -295,6 +295,27 @@
       background:
         radial-gradient(circle at 32% 50%, rgba(255, 96, 118, 0.68) 0%, rgba(255, 96, 118, 0.3) 34%, rgba(255, 96, 118, 0.08) 58%, transparent 76%);
       animation-name: slowCollisionRight;
+    }
+
+    .hero-visual::marker {
+      content: "";
+    }
+
+    .hero-visual-interference {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 28%;
+      height: 44%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.22) 0%, rgba(186, 218, 255, 0.14) 24%, rgba(255, 140, 152, 0.12) 42%, transparent 72%);
+      filter: blur(18px);
+      opacity: 0.16;
+      z-index: 0;
+      pointer-events: none;
+      animation: interferencePulse 18s ease-in-out infinite alternate;
     }
 
     .hero-visual img {
@@ -333,9 +354,21 @@
         transform: translateY(-50%) translateX(0) scale(0.94);
         opacity: 0.38;
       }
-      100% {
+      44% {
         transform: translateY(-50%) translateX(68%) scale(1.04);
         opacity: 0.72;
+      }
+      50% {
+        transform: translateY(-50%) translateX(63%) scale(0.98, 1.08);
+        opacity: 0.78;
+      }
+      56% {
+        transform: translateY(-50%) translateX(66%) scale(1);
+        opacity: 0.66;
+      }
+      100% {
+        transform: translateY(-50%) translateX(0) scale(0.94);
+        opacity: 0.38;
       }
     }
 
@@ -344,9 +377,44 @@
         transform: translateY(-50%) translateX(0) scale(0.94);
         opacity: 0.38;
       }
-      100% {
+      44% {
         transform: translateY(-50%) translateX(-68%) scale(1.04);
         opacity: 0.72;
+      }
+      50% {
+        transform: translateY(-50%) translateX(-63%) scale(0.98, 1.08);
+        opacity: 0.78;
+      }
+      56% {
+        transform: translateY(-50%) translateX(-66%) scale(1);
+        opacity: 0.66;
+      }
+      100% {
+        transform: translateY(-50%) translateX(0) scale(0.94);
+        opacity: 0.38;
+      }
+    }
+
+    @keyframes interferencePulse {
+      0% {
+        opacity: 0.08;
+        transform: translate(-50%, -50%) scale(0.86);
+      }
+      40% {
+        opacity: 0.12;
+        transform: translate(-50%, -50%) scale(0.94);
+      }
+      50% {
+        opacity: 0.34;
+        transform: translate(-50%, -50%) scale(1.14, 0.9);
+      }
+      60% {
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        opacity: 0.08;
+        transform: translate(-50%, -50%) scale(0.86);
       }
     }
 
@@ -807,6 +875,7 @@
       </article>
 
       <aside class="hero-visual">
+        <div class="hero-visual-interference" aria-hidden="true"></div>
         <img src="../assets/img/preview-640.jpg" alt="Visual symbol of 3-Branas">
         <div class="visual-caption">
           Symbolic interface of the project. The visual reading matters:
