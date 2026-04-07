@@ -195,12 +195,19 @@
       line-height: 0.92;
       font-weight: 500;
       letter-spacing: -0.05em;
-      max-width: 12ch;
-      text-wrap: balance;
+      max-width: 16ch;
+      text-wrap: unset;
     }
 
     .hero-title-line {
       display: block;
+      white-space: nowrap;
+    }
+
+    .hero-title-line--small {
+      font-size: 0.6em;
+      line-height: 1.05;
+      margin: 0.08em 0;
     }
 
     .hero p {
@@ -698,7 +705,7 @@
         <div class="eyebrow">Universe under construction</div>
         <h1>
           <span class="hero-title-line">Relational Universe</span>
-          <span class="hero-title-line">of</span>
+          <span class="hero-title-line hero-title-line--small">of</span>
           <span class="hero-title-line">2 3-Branes in Collision.</span>
         </h1>
         <p>
@@ -723,7 +730,7 @@
       </article>
 
       <aside class="hero-visual">
-        <img src="preview.jpeg" alt="Visual symbol of 3-Branas">
+        <img src="../preview.jpeg" alt="Visual symbol of 3-Branas">
         <div class="visual-caption">
           Symbolic interface of the project. The visual reading matters:
           contact, coupling, tension, and reorganization of the medium.
