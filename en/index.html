@@ -140,9 +140,8 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 24px;
-      align-items: stretch;
+      grid-template-columns: 1fr;
+      gap: 18px;
       margin-bottom: 24px;
     }
 
@@ -158,8 +157,9 @@
     }
 
     .hero-copy {
-      padding: 34px 30px 30px;
+      padding: 42px 34px 34px;
       position: relative;
+      text-align: center;
     }
 
     .hero-copy::before {
@@ -174,7 +174,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 20px;
+      margin: 0 auto 22px;
       color: var(--gold);
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.72rem;
@@ -190,27 +190,28 @@
     }
 
     .hero h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2.3rem, 6vw, 5.2rem);
-      line-height: 0.96;
+      margin: 0 auto 18px;
+      font-size: clamp(2.9rem, 7vw, 6.4rem);
+      line-height: 0.92;
       font-weight: 500;
-      letter-spacing: -0.04em;
-      max-width: 10ch;
+      letter-spacing: -0.05em;
+      max-width: 12ch;
+      text-wrap: balance;
     }
 
     .hero p {
-      margin: 0 0 18px;
+      margin: 0 auto 18px;
       color: var(--muted);
       font-size: 1.06rem;
       line-height: 1.75;
-      max-width: 60ch;
+      max-width: 54ch;
     }
 
     .hero-note {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
     .metric {
@@ -239,8 +240,9 @@
     .hero-visual {
       display: grid;
       align-items: stretch;
-      min-height: 100%;
+      min-height: 420px;
       position: relative;
+      margin-top: 4px;
       background:
         radial-gradient(circle at 20% 50%, rgba(141,213,255,0.18), transparent 28%),
         radial-gradient(circle at 78% 52%, rgba(255,106,136,0.18), transparent 26%),
@@ -251,8 +253,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 42%;
       opacity: 0.96;
       mix-blend-mode: screen;
+      transform: scale(1.05);
     }
 
     .visual-caption {
@@ -678,10 +682,10 @@
     <header class="nav">
       <div class="nav-brand">
         <div class="nav-title">3Branas</div>
-        <div class="nav-sub">ThöEv · eCEL · Collision of 2 3-Branes</div>
+        <div class="nav-sub">eCEL · Collision of 2 3-Branes · Working Draft</div>
       </div>
       <nav class="nav-links">
-        <a class="nav-chip" href="index.html" lang="es" aria-label="Versión en español">🇨🇱 ES</a>
+        <a class="nav-chip" href="../es/" lang="es" aria-label="Spanish version">🇨🇱 ES</a>
       </nav>
     </header>
 
@@ -690,13 +694,8 @@
         <div class="eyebrow">Universe under construction</div>
         <h1>Relational Universe of 2 3-Branes in Collision.</h1>
         <p>
-          A new interpretation of the observed universe, described through a
-          series of independent papers that are still under construction.
-        </p>
-        <p>
-          This site works as an entry point into the framework: live drafts,
-          review documents, active branches, and pieces that try to close
-          mechanism before presentation.
+          A new interpretation of the observed universe, developed through a
+          series of independent papers still in progress.
         </p>
 
         <div class="hero-note">
@@ -710,13 +709,13 @@
           </div>
           <div class="metric">
             <span class="metric-label">Mode</span>
-            <span class="metric-value">Working draft, no final closure</span>
+            <span class="metric-value">Working draft, not a final release</span>
           </div>
         </div>
       </article>
 
       <aside class="hero-visual">
-        <img src="../preview.jpeg" alt="Símbolo visual de 3-Branas">
+        <img src="preview.jpeg" alt="Visual symbol of 3-Branas">
         <div class="visual-caption">
           Symbolic interface of the project. The visual reading matters:
           contact, coupling, tension, and reorganization of the medium.
@@ -726,7 +725,7 @@
 
     <section class="grid" id="framework">
       <article class="panel span-7">
-        <h2>What currently supports the line</h2>
+        <h2>What currently defines the framework</h2>
         <p>
           The current priority is not to “explain everything” at once, but to
           close pieces with mechanism: collision geometry, observational scales,
@@ -766,10 +765,10 @@
             <div class="counter-cell"><span class="counter-unit">months</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
             <div class="counter-cell"><span class="counter-unit">days</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
             <div class="counter-cell"><span class="counter-unit">hours</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
-            <div class="counter-cell"><span class="counter-unit">mins</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
-            <div class="counter-cell seconds"><span class="counter-unit">secs</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
-          </div>
-          <div class="counter-meta">Symbolic time remaining to close the picture</div>
+          <div class="counter-cell"><span class="counter-unit">min</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
+          <div class="counter-cell seconds"><span class="counter-unit">sec</span><span class="counter-num-wrap"><span class="counter-num">--</span></span></div>
+        </div>
+          <div class="counter-meta">Symbolic time remaining before the framework closes into a readable form</div>
         </div>
         <div class="status-row">
           <span class="status-chip">Santiago, Chile</span>
@@ -789,7 +788,7 @@
           extra context.
         </p>
         <div class="list">
-          <div class="list-item">Collision of 2 3-Branes is already in polishing and external-reading phase.</div>
+          <div class="list-item">Collision of 2 3-Branes is already in a polishing and external-reading phase.</div>
           <div class="list-item">MazzGAP works as a separate technical branch for stability and binding energy.</div>
           <div class="list-item">The website should act as an entry point, not as a substitute for the paper.</div>
         </div>
@@ -804,9 +803,9 @@
         </p>
         <div class="cards" style="grid-template-columns: 1fr;">
           <a class="card-link" href="mailto:contacto@3branas.com">
-            <span class="card-tag">Correo</span>
+            <span class="card-tag">Contact</span>
             <span class="card-title">contacto@3branas.com</span>
-            <span class="card-note">Suggested contact alias for public presentation of the project.</span>
+            <span class="card-note">Public contact alias for the external presentation of the project.</span>
           </a>
         </div>
       </article>
@@ -866,8 +865,8 @@
         <div class="counter-cell"><span class="counter-unit">months</span><span class="counter-num-wrap"><span class="counter-num">${String(months).padStart(2, "0")}</span></span></div>
         <div class="counter-cell"><span class="counter-unit">days</span><span class="counter-num-wrap"><span class="counter-num">${String(days).padStart(2, "0")}</span></span></div>
         <div class="counter-cell"><span class="counter-unit">hours</span><span class="counter-num-wrap"><span class="counter-num">${String(hours).padStart(2, "0")}</span></span></div>
-        <div class="counter-cell"><span class="counter-unit">mins</span><span class="counter-num-wrap"><span class="counter-num">${String(minutes).padStart(2, "0")}</span></span></div>
-        <div class="counter-cell seconds"><span class="counter-unit">secs</span><span class="counter-num-wrap"><span class="counter-num">${String(seconds).padStart(2, "0")}</span></span></div>
+        <div class="counter-cell"><span class="counter-unit">min</span><span class="counter-num-wrap"><span class="counter-num">${String(minutes).padStart(2, "0")}</span></span></div>
+        <div class="counter-cell seconds"><span class="counter-unit">sec</span><span class="counter-num-wrap"><span class="counter-num">${String(seconds).padStart(2, "0")}</span></span></div>
       `;
     }
 
