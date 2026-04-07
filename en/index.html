@@ -253,6 +253,17 @@
     }
 
     .hero-visual {
+      --left-x: -112%;
+      --right-x: 112%;
+      --left-scale-x: 0.74;
+      --right-scale-x: 0.74;
+      --left-scale-y: 0.74;
+      --right-scale-y: 0.74;
+      --left-opacity: 0;
+      --right-opacity: 0;
+      --collision-scale-x: 0.78;
+      --collision-scale-y: 0.78;
+      --collision-opacity: 0;
       display: grid;
       place-items: center;
       min-height: 340px;
@@ -265,9 +276,7 @@
         linear-gradient(180deg, rgba(6,7,10,0.4), rgba(6,7,10,0.9));
     }
 
-    .hero-visual::before,
-    .hero-visual::after {
-      content: "";
+    .brane {
       position: absolute;
       top: 50%;
       width: 56%;
@@ -276,27 +285,22 @@
       filter: blur(32px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0;
-      animation-duration: 22s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-direction: normal;
     }
 
-    .hero-visual::before {
+    .brane-left {
       left: 0;
-      clip-path: inset(0 0 0 0);
+      opacity: var(--left-opacity);
+      transform: translate(var(--left-x), -50%) scale(var(--left-scale-x), var(--left-scale-y));
       background:
         radial-gradient(circle at 72% 50%, rgba(105, 199, 255, 0.78) 0%, rgba(105, 199, 255, 0.32) 34%, rgba(105, 199, 255, 0.08) 58%, transparent 78%);
-      animation-name: braneFromLeft;
     }
 
-    .hero-visual::after {
+    .brane-right {
       right: 0;
-      clip-path: inset(0 0 0 0);
+      opacity: var(--right-opacity);
+      transform: translate(var(--right-x), -50%) scale(var(--right-scale-x), var(--right-scale-y));
       background:
         radial-gradient(circle at 28% 50%, rgba(255, 96, 118, 0.74) 0%, rgba(255, 96, 118, 0.3) 34%, rgba(255, 96, 118, 0.08) 58%, transparent 78%);
-      animation-name: braneFromRight;
     }
 
     .hero-visual-interference {
@@ -310,10 +314,10 @@
       background:
         radial-gradient(circle at center, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.12) 28%, rgba(186, 218, 255, 0.08) 48%, transparent 74%);
       filter: blur(18px);
-      opacity: 0;
+      opacity: var(--collision-opacity);
       z-index: 0;
       pointer-events: none;
-      animation: centerCollision 22s linear infinite;
+      transform: translate(-50%, -50%) scale(var(--collision-scale-x), var(--collision-scale-y));
     }
 
     .hero-visual img {
@@ -347,75 +351,6 @@
       z-index: 2;
     }
 
-    @keyframes braneFromLeft {
-      0%, 4% {
-        transform: translate(-104%, -50%) scale(0.72);
-        opacity: 0;
-      }
-      10% {
-        transform: translate(-80%, -50%) scale(0.82);
-        opacity: 0.42;
-      }
-      46% {
-        transform: translate(10%, -50%) scale(1.06);
-        opacity: 0.72;
-      }
-      54% {
-        transform: translate(-12%, -50%) scale(0.92);
-        opacity: 0.34;
-      }
-      78%, 100% {
-        transform: translate(-104%, -50%) scale(0.72);
-        opacity: 0;
-      }
-    }
-
-    @keyframes braneFromRight {
-      0%, 4% {
-        transform: translate(104%, -50%) scale(0.72);
-        opacity: 0;
-      }
-      10% {
-        transform: translate(80%, -50%) scale(0.82);
-        opacity: 0.42;
-      }
-      46% {
-        transform: translate(-10%, -50%) scale(1.06);
-        opacity: 0.72;
-      }
-      54% {
-        transform: translate(12%, -50%) scale(0.92);
-        opacity: 0.34;
-      }
-      78%, 100% {
-        transform: translate(104%, -50%) scale(0.72);
-        opacity: 0;
-      }
-    }
-
-    @keyframes centerCollision {
-      0%, 32% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.76);
-      }
-      44% {
-        opacity: 0.34;
-        transform: translate(-50%, -50%) scale(1.22, 0.94);
-      }
-      52% {
-        opacity: 0.26;
-        transform: translate(-50%, -50%) scale(1.08, 0.98);
-      }
-      60% {
-        opacity: 0.1;
-        transform: translate(-50%, -50%) scale(0.92);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.76);
-      }
-    }
-
     @media (max-width: 720px) {
       .hero-visual {
         min-height: 300px;
@@ -425,6 +360,11 @@
       .hero-visual img {
         max-width: min(100%, 180px);
         max-height: 150px;
+      }
+
+      .brane {
+        width: 62%;
+        height: 54%;
       }
     }
 
@@ -873,6 +813,8 @@
       </article>
 
       <aside class="hero-visual">
+        <div class="brane brane-left" aria-hidden="true"></div>
+        <div class="brane brane-right" aria-hidden="true"></div>
         <div class="hero-visual-interference" aria-hidden="true"></div>
         <img src="../assets/img/preview-640.jpg" alt="Visual symbol of 3-Branas">
         <div class="visual-caption">
@@ -1029,8 +971,85 @@
       `;
     }
 
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function mix(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function smoothstep(edge0, edge1, x) {
+      const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+      return t * t * (3 - 2 * t);
+    }
+
+    function setupHeroCollision() {
+      const visual = document.querySelector(".hero-visual");
+      if (!visual) return;
+
+      const cycleMs = 22000;
+      const travelStart = 0.06;
+      const travelEnd = 0.94;
+
+      function frame(now) {
+        const t = (now % cycleMs) / cycleMs;
+        const travel = clamp((t - travelStart) / (travelEnd - travelStart), 0, 1);
+
+        let leftX = -112;
+        let rightX = 112;
+        let leftOpacity = 0;
+        let rightOpacity = 0;
+        let leftScaleX = 0.74;
+        let rightScaleX = 0.74;
+        let leftScaleY = 0.74;
+        let rightScaleY = 0.74;
+        let collisionOpacity = 0;
+        let collisionScaleX = 0.78;
+        let collisionScaleY = 0.78;
+
+        if (t >= travelStart && t <= travelEnd) {
+          leftX = mix(-112, 112, travel);
+          rightX = mix(112, -112, travel);
+
+          const fadeIn = smoothstep(0, 0.08, travel);
+          const fadeOut = 1 - smoothstep(0.92, 1, travel);
+          const visibility = Math.min(fadeIn, fadeOut);
+
+          leftOpacity = rightOpacity = 0.68 * visibility;
+
+          const centerDistance = Math.abs(leftX - rightX);
+          const overlap = clamp(1 - centerDistance / 58, 0, 1);
+
+          leftScaleX = rightScaleX = mix(0.74, 1.03, visibility) + 0.04 * overlap;
+          leftScaleY = rightScaleY = mix(0.74, 1.03, visibility) - 0.06 * overlap;
+
+          collisionOpacity = 0.44 * Math.pow(overlap, 1.35);
+          collisionScaleX = mix(0.82, 1.52, overlap);
+          collisionScaleY = mix(0.82, 0.84, overlap);
+        }
+
+        visual.style.setProperty("--left-x", `${leftX}%`);
+        visual.style.setProperty("--right-x", `${rightX}%`);
+        visual.style.setProperty("--left-opacity", leftOpacity.toFixed(3));
+        visual.style.setProperty("--right-opacity", rightOpacity.toFixed(3));
+        visual.style.setProperty("--left-scale-x", leftScaleX.toFixed(3));
+        visual.style.setProperty("--right-scale-x", rightScaleX.toFixed(3));
+        visual.style.setProperty("--left-scale-y", leftScaleY.toFixed(3));
+        visual.style.setProperty("--right-scale-y", rightScaleY.toFixed(3));
+        visual.style.setProperty("--collision-opacity", collisionOpacity.toFixed(3));
+        visual.style.setProperty("--collision-scale-x", collisionScaleX.toFixed(3));
+        visual.style.setProperty("--collision-scale-y", collisionScaleY.toFixed(3));
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
     updateCounter();
     setInterval(updateCounter, 1000);
+    setupHeroCollision();
   </script>
 </body>
 </html>
