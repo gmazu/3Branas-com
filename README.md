@@ -47,3 +47,12 @@ Luego abre:
 ## Notas
 
 - El contador no debe quedar fijo: debe mantenerse activo y contar en vivo en las paginas que lo usen.
+
+## Pendientes conceptuales
+
+- Documentar y eventualmente visualizar tres finales cosmologicos dentro de la narrativa del sitio:
+  - `Big Rip`: separacion / cruce / desgarro entre 2 universos o 2 3-branas.
+  - `Big Freeze`: acoplamiento agotado, universos pegados, agotamiento estelar y muerte termica.
+  - `Bounce`: detencion, compresion, colision y retorno o rebote.
+- Evaluar si esos tres finales pueden mostrarse como variantes visuales del panel central de colision.
+- Revisar mas adelante cual de esos finales parece mas plausible con los datos y la linea conceptual disponibles.
