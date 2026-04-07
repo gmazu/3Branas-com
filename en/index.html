@@ -277,8 +277,8 @@
       opacity: 0.62;
       pointer-events: none;
       z-index: 0;
-      animation-duration: 12s;
-      animation-timing-function: cubic-bezier(0.42, 0, 0.24, 1);
+      animation-duration: 14s;
+      animation-timing-function: linear;
       animation-iteration-count: infinite;
       animation-direction: normal;
     }
@@ -297,10 +297,6 @@
       animation-name: slowCollisionRight;
     }
 
-    .hero-visual::marker {
-      content: "";
-    }
-
     .hero-visual-interference {
       position: absolute;
       left: 50%;
@@ -315,7 +311,7 @@
       opacity: 0.16;
       z-index: 0;
       pointer-events: none;
-      animation: interferencePulse 18s ease-in-out infinite alternate;
+      animation: interferencePulse 14s linear infinite;
     }
 
     .hero-visual img {
@@ -350,85 +346,85 @@
     }
 
     @keyframes slowCollisionLeft {
-      0% {
+      0%, 10% {
         transform: translateY(-50%) translateX(-24%) scale(0.82);
         opacity: 0;
       }
-      14% {
+      18% {
         transform: translateY(-50%) translateX(0) scale(0.94);
         opacity: 0.32;
       }
-      46% {
+      42% {
         transform: translateY(-50%) translateX(68%) scale(1.04);
         opacity: 0.72;
       }
-      52% {
+      48% {
         transform: translateY(-50%) translateX(63%) scale(0.98, 1.08);
         opacity: 0.78;
       }
-      58% {
-        transform: translateY(-50%) translateX(66%) scale(1);
+      54% {
+        transform: translateY(-50%) translateX(68%) scale(1.02);
         opacity: 0.66;
       }
-      86% {
+      78% {
         transform: translateY(-50%) translateX(0) scale(0.94);
         opacity: 0.32;
       }
-      100% {
+      88%, 100% {
         transform: translateY(-50%) translateX(-24%) scale(0.82);
         opacity: 0;
       }
     }
 
     @keyframes slowCollisionRight {
-      0% {
+      0%, 10% {
         transform: translateY(-50%) translateX(24%) scale(0.82);
         opacity: 0;
       }
-      14% {
+      18% {
         transform: translateY(-50%) translateX(0) scale(0.94);
         opacity: 0.32;
       }
-      46% {
+      42% {
         transform: translateY(-50%) translateX(-68%) scale(1.04);
         opacity: 0.72;
       }
-      52% {
+      48% {
         transform: translateY(-50%) translateX(-63%) scale(0.98, 1.08);
         opacity: 0.78;
       }
-      58% {
-        transform: translateY(-50%) translateX(-66%) scale(1);
+      54% {
+        transform: translateY(-50%) translateX(-68%) scale(1.02);
         opacity: 0.66;
       }
-      86% {
+      78% {
         transform: translateY(-50%) translateX(0) scale(0.94);
         opacity: 0.32;
       }
-      100% {
+      88%, 100% {
         transform: translateY(-50%) translateX(24%) scale(0.82);
         opacity: 0;
       }
     }
 
     @keyframes interferencePulse {
-      0% {
+      0%, 22% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.78);
       }
-      36% {
+      40% {
         opacity: 0.12;
         transform: translate(-50%, -50%) scale(0.94);
       }
-      52% {
+      48% {
         opacity: 0.34;
         transform: translate(-50%, -50%) scale(1.14, 0.9);
       }
-      60% {
+      54% {
         opacity: 0.2;
         transform: translate(-50%, -50%) scale(1);
       }
-      100% {
+      72%, 100% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.78);
       }
