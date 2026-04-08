@@ -57,6 +57,12 @@ La prioridad no es “embellecer” la pagina, sino hacer visible una relacion:
 - integrar mas adelante un chat o interfaz conversacional dentro del sitio
 - ordenar mejor la relacion entre web, papers, PDFs y ramas activas
 
+## Notas de trabajo
+
+- El panel central de colision en `en/index.html` y `es/index.html` ya forma parte de la lectura visual principal del sitio y no debe tratarse como decoracion secundaria.
+- Las imagenes externas en `/home/gmazuel/www/img` deben revisarse manualmente antes de entrar a la web.
+- No forzar nombres fisicos o cosmologicos en nuevas imagenes hasta confirmar su lectura.
+
 ## Pendientes conceptuales
 
 - documentar y eventualmente visualizar tres finales cosmologicos dentro de la narrativa del sitio:

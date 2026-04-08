@@ -253,8 +253,8 @@
     }
 
     .hero-visual {
-      --left-x: -112%;
-      --right-x: 112%;
+      --left-x: -132%;
+      --right-x: 132%;
       --left-scale-x: 0.74;
       --right-scale-x: 0.74;
       --left-scale-y: 0.74;
@@ -268,12 +268,25 @@
       place-items: center;
       min-height: 340px;
       position: relative;
+      overflow: visible;
       margin-top: 4px;
-      padding: 28px 28px 88px;
+      padding: 28px;
       background:
         radial-gradient(circle at 50% 42%, rgba(141,213,255,0.14), transparent 24%),
         radial-gradient(circle at 50% 58%, rgba(255,106,136,0.12), transparent 22%),
         linear-gradient(180deg, rgba(6,7,10,0.4), rgba(6,7,10,0.9));
+    }
+
+    .hero-visual-stage {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+
+    .hero-visual-field {
+      position: absolute;
+      inset: -2% -10% 0;
     }
 
     .brane {
@@ -329,7 +342,7 @@
       object-position: center center;
       opacity: 0.8;
       mix-blend-mode: screen;
-      transform: translateY(10px);
+      transform: none;
       position: relative;
       z-index: 1;
       filter: saturate(0.96) drop-shadow(0 0 18px rgba(255,255,255,0.08));
@@ -350,7 +363,7 @@
     @media (max-width: 720px) {
       .hero-visual {
         min-height: 300px;
-        padding: 22px 22px 82px;
+        padding: 22px;
       }
 
       .hero-visual img {
@@ -809,10 +822,14 @@
       </article>
 
       <aside class="hero-visual">
-        <div class="brane brane-left" aria-hidden="true"></div>
-        <div class="brane brane-right" aria-hidden="true"></div>
-        <div class="hero-visual-interference" aria-hidden="true"></div>
-        <img src="../assets/img/preview-640.jpg" alt="Símbolo visual de 3-Branas">
+        <div class="hero-visual-stage" aria-hidden="true">
+          <div class="hero-visual-field">
+            <div class="brane brane-left"></div>
+            <div class="brane brane-right"></div>
+            <div class="hero-visual-interference"></div>
+          </div>
+        </div>
+        <img src="../assets/img/preview-640-centered.jpg" alt="Símbolo visual de 3-Branas">
       </aside>
       <div class="visual-caption">
         Interfaz simbólica del proyecto. La lectura visual importa:
@@ -984,16 +1001,16 @@
       const visual = document.querySelector(".hero-visual");
       if (!visual) return;
 
-      const cycleMs = 22000;
+      const cycleMs = 26000;
       const travelStart = 0.06;
-      const travelEnd = 0.94;
+      const travelEnd = 0.985;
 
       function frame(now) {
         const t = (now % cycleMs) / cycleMs;
         const travel = clamp((t - travelStart) / (travelEnd - travelStart), 0, 1);
 
-        let leftX = -112;
-        let rightX = 112;
+        let leftX = -132;
+        let rightX = 132;
         let leftOpacity = 0;
         let rightOpacity = 0;
         let leftScaleX = 0.74;
@@ -1005,12 +1022,11 @@
         let collisionScaleY = 0.78;
 
         if (t >= travelStart && t <= travelEnd) {
-          leftX = mix(-112, 112, travel);
-          rightX = mix(112, -112, travel);
+          leftX = mix(-132, 132, travel);
+          rightX = mix(132, -132, travel);
 
           const fadeIn = smoothstep(0, 0.09, travel);
-          const fadeOut = 1 - smoothstep(0.9, 1, travel);
-          const visibility = Math.min(fadeIn, fadeOut);
+          const visibility = fadeIn;
 
           leftOpacity = rightOpacity = 0.68 * visibility;
 
