@@ -252,6 +252,59 @@
       line-height: 1.35;
     }
 
+    .runic-mark {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      min-width: 2.2ch;
+      min-height: 2.2em;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .runic-glyph {
+      display: block;
+    }
+
+    .runic-dot {
+      position: absolute;
+      width: 0.26em;
+      height: 0.26em;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 8px rgba(210, 174, 88, 0.28);
+    }
+
+    .runic-dot.top {
+      top: 0.18em;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .runic-dot.top-left {
+      top: 0.18em;
+      left: calc(50% - 0.28em);
+      transform: translateX(-50%);
+    }
+
+    .runic-dot.top-right {
+      top: 0.18em;
+      left: calc(50% + 0.28em);
+      transform: translateX(-50%);
+    }
+
+    .runic-dot.bottom-left {
+      bottom: 0.18em;
+      left: calc(50% - 0.28em);
+      transform: translateX(-50%);
+    }
+
+    .runic-dot.bottom-right {
+      bottom: 0.18em;
+      left: calc(50% + 0.28em);
+      transform: translateX(-50%);
+    }
+
     .hero-visual {
       --left-x: -132%;
       --right-x: 132%;
@@ -807,16 +860,28 @@
 
         <div class="hero-note">
           <div class="metric">
-            <span class="metric-label">Framework</span>
-            <span class="metric-value">3Branas + eCEL + GRF</span>
+            <span class="metric-label">Push</span>
+            <span class="metric-value runic-mark">
+              <span class="runic-glyph">ᚱ</span>
+              <span class="runic-dot top"></span>
+            </span>
           </div>
           <div class="metric">
-            <span class="metric-label">Live branch</span>
-            <span class="metric-value">Collision of 2 3-Branes</span>
+            <span class="metric-label">Confinement</span>
+            <span class="metric-value runic-mark">
+              <span class="runic-glyph">ᚱ</span>
+              <span class="runic-dot top-left"></span>
+              <span class="runic-dot top-right"></span>
+            </span>
           </div>
           <div class="metric">
-            <span class="metric-label">Mode</span>
-            <span class="metric-value">Working draft, not a final release</span>
+            <span class="metric-label">Rotation</span>
+            <span class="metric-value runic-mark">
+              <span class="runic-glyph">ᚱ</span>
+              <span class="runic-dot top"></span>
+              <span class="runic-dot bottom-left"></span>
+              <span class="runic-dot bottom-right"></span>
+            </span>
           </div>
         </div>
       </article>
